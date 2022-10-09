@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SanPham from "./SanPham";
 
 export default class DanhSachSanPham extends Component {
   mangDienThoai = [
@@ -63,26 +64,7 @@ export default class DanhSachSanPham extends Component {
     return this.mangDienThoai.map((item, index) => {
       return (
         <div className="col-4" key={index}>
-          <div className="card text-center" style={{ width: "18rem" }}>
-            <img
-              src={item.hinhAnh}
-              className="card-img-top"
-              alt={item.hinhAnh}
-              style={{ width: "200px", height: "200px", marginLeft: "20px" }}
-            />
-            <div className="card-body">
-              <h3 className="card-title">{item.tenSP}</h3>
-              <p className="card-text">{item.giaBan}</p>
-              <button
-                className="btn btn-success"
-                onClick={() => {
-                  this.xemChiTiet(item);
-                }}
-              >
-                Xem chi tiết
-              </button>
-            </div>
-          </div>
+          <SanPham hamXemChiTiet={this.xemChiTiet} SanPhamChiTiet={item} />
         </div>
       );
     });
