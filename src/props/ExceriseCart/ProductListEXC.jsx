@@ -44,7 +44,10 @@ export default class ProductListEXC extends Component {
     return this.mangDienThoai.map((item, index) => {
       return (
         <div className="col-4" key={index}>
-          <ProductItemEXC SanPhamChiTiet={item} />
+          <ProductItemEXC
+            SanPhamChiTiet={item}
+            themVaoGio={this.props.themVaoGio}
+          />
         </div>
       );
     });

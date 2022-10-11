@@ -10,11 +10,15 @@ export default class CartModal extends Component {
         <tr key={index}>
           <td>{item.maSP}</td>
           <td>
-            <img src={item.hinhAnh} alt={item.hinhAnh} />
+            <img
+              style={{ width: "40px", height: "40px" }}
+              src={item.hinhAnh}
+              alt={item.hinhAnh}
+            />
           </td>
           <td>{item.tenSP}</td>
           <td>{item.soLuong}</td>
-          <td>{item.donGia}</td>
+          <td>{item.donGia.toLocaleString()}</td>
           <td>{item.soLuong * item.donGia}</td>
         </tr>
       );

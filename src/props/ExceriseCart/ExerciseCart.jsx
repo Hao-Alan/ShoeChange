@@ -4,9 +4,31 @@ import ProductListEXC from "./ProductListEXC";
 
 export default class ExerciseCart extends Component {
   state = {
-    currentPhone: [
-      { maSP: 1, hinhAnh: "", tenSP: "Tên mặc định", soLuong: 1, donGia: 2000 },
-    ],
+    currentPhone: [],
+  };
+  themVaoGio = (sanPham) => {
+    // console.log(sanPham);
+    let spGioHang = {
+      maSP: sanPham.maSP,
+      hinhAnh: sanPham.hinhAnh,
+      tenSP: sanPham.tenSP,
+      soLuong: 1,
+      donGia: sanPham.giaBan,
+    };
+    // this.state.currentPhone.push(spGioHang);
+    let index = this.state.currentPhone.findIndex(
+      (spGH) => spGH.maSP === spGioHang.maSP
+    );
+
+    if (index != -1) {
+      this.state.currentPhone[index].soLuong += 1;
+    } else {
+      this.state.currentPhone.push(spGioHang);
+    }
+    // let gioHangCapNhat = [...this.state.currentPhone, spGioHang];
+    this.setState({
+      currentPhone: this.state.currentPhone,
+    });
   };
 
   render() {
@@ -29,7 +51,7 @@ export default class ExerciseCart extends Component {
           </span>
         </div>
         <CartModal defaultss={this.state.currentPhone} />
-        <ProductListEXC />
+        <ProductListEXC themVaoGio={this.themVaoGio} />
       </div>
     );
   }
