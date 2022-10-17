@@ -15,7 +15,9 @@ export default class ProductItemEXC extends Component {
           />
           <div className="card-body">
             <h5 className="card-title">{SanPhamChiTiet.tenSP}</h5>
-            <p className="card-text">{SanPhamChiTiet.heDieuHanh}</p>
+            <p className="card-text">
+              {SanPhamChiTiet.giaBan.toLocaleString()}
+            </p>
             <button
               href="#"
               className="btn btn-primary"

@@ -19,7 +19,17 @@ export default class CartModal extends Component {
           <td>{item.tenSP}</td>
           <td>{item.soLuong}</td>
           <td>{item.donGia.toLocaleString()}</td>
-          <td>{item.soLuong * item.donGia}</td>
+          <td>{(item.soLuong * item.donGia).toLocaleString()}</td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                this.props.xoaGioHang(item.maSP);
+              }}
+            >
+              Xóa
+            </button>
+          </td>
         </tr>
       );
     });
@@ -59,7 +69,7 @@ export default class CartModal extends Component {
                       <th>Số lượng</th>
                       <th>Đơn Giá</th>
                       <th>Thành Tiền</th>
-                      <th></th>
+                      <th>Xóa</th>
                     </tr>
                   </thead>
                   <tbody>{this.renderTable()}</tbody>

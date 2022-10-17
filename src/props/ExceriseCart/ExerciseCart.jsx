@@ -30,7 +30,33 @@ export default class ExerciseCart extends Component {
       currentPhone: this.state.currentPhone,
     });
   };
+  xoaGioHang = (SP) => {
+    console.log(SP);
+    let index = this.state.currentPhone.findIndex(
+      (quanque) => quanque.maSP === SP
+    );
+    if (index !== -1) {
+      this.state.currentPhone.splice(index, 1);
+    }
+    this.setState({
+      currentPhone: this.state.currentPhone,
+    });
+  };
 
+  // tinhTongSoLuong = () => {
+  //   let tongSoLuong = 0;
+  //   for (let index = 0; index < this.state.currentPhone.length; index++) {
+  //     let SP = this.state.currentPhone[index];
+  //     tongSoLuong += SP.soLuong;
+  //   }
+  //   return tongSoLuong;
+  // };
+  tinhTongSoLuong = () => {
+    return this.state.currentPhone.reduce((tong, item, index) => {
+      return (tong += item.soLuong);
+    }, 0);
+    // return tongSoLuong;
+  };
   render() {
     return (
       <div className="container">
@@ -46,11 +72,14 @@ export default class ExerciseCart extends Component {
                 className="fa fa-cart-arrow-down"
                 style={{ fontSize: "20px", color: "purple" }}
               ></i>{" "}
-              (0) Giỏ Hàng{" "}
+              ({this.tinhTongSoLuong()}) Giỏ Hàng{" "}
             </b>
           </span>
         </div>
-        <CartModal defaultss={this.state.currentPhone} />
+        <CartModal
+          xoaGioHang={this.xoaGioHang}
+          defaultss={this.state.currentPhone}
+        />
         <ProductListEXC themVaoGio={this.themVaoGio} />
       </div>
     );
