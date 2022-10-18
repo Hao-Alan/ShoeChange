@@ -42,6 +42,21 @@ export default class ExerciseCart extends Component {
       currentPhone: this.state.currentPhone,
     });
   };
+  tangGiamSoLuong = (maSP, number) => {
+    let gioHang = [...this.state.currentPhone];
+
+    let index = gioHang.findIndex((sanPham) => sanPham.maSP === maSP);
+    if (index !== -1) {
+      if (gioHang[index].soLuong <= 1 && number === -1) {
+        alert("so luong nho nhat phai la 1");
+        return;
+      }
+      gioHang[index].soLuong += number;
+    }
+    this.setState({
+      currentPhone: gioHang,
+    });
+  };
 
   // tinhTongSoLuong = () => {
   //   let tongSoLuong = 0;
@@ -56,6 +71,14 @@ export default class ExerciseCart extends Component {
       return (tong += item.soLuong);
     }, 0);
     // return tongSoLuong;
+  };
+  tinhTongTien = () => {
+    let { currentPhone } = this.state;
+    return currentPhone
+      .reduce((tong, item, index) => {
+        return (tong += item.soLuong * item.donGia);
+      }, 0)
+      .toLocaleString();
   };
   render() {
     return (
@@ -79,6 +102,8 @@ export default class ExerciseCart extends Component {
         <CartModal
           xoaGioHang={this.xoaGioHang}
           defaultss={this.state.currentPhone}
+          tangGiamSoLuong={this.tangGiamSoLuong}
+          tinhTongTien={this.tinhTongTien}
         />
         <ProductListEXC themVaoGio={this.themVaoGio} />
       </div>

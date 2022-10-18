@@ -17,7 +17,25 @@ export default class CartModal extends Component {
             />
           </td>
           <td>{item.tenSP}</td>
-          <td>{item.soLuong}</td>
+          <td>
+            <button
+              className="btn btn-primary me-3"
+              onClick={() => {
+                this.props.tangGiamSoLuong(item.maSP, 1);
+              }}
+            >
+              +
+            </button>
+            {item.soLuong}
+            <button
+              className="btn btn-primary ms-3"
+              onClick={() => {
+                this.props.tangGiamSoLuong(item.maSP, -1);
+              }}
+            >
+              -
+            </button>
+          </td>
           <td>{item.donGia.toLocaleString()}</td>
           <td>{(item.soLuong * item.donGia).toLocaleString()}</td>
           <td>
@@ -73,6 +91,13 @@ export default class CartModal extends Component {
                     </tr>
                   </thead>
                   <tbody>{this.renderTable()}</tbody>
+                  <tfoot>
+                    <tr>
+                      <td colSpan={5}></td>
+                      <td>tổng tiền</td>
+                      <td>{this.props.tinhTongTien()}</td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
               <div className="modal-footer">

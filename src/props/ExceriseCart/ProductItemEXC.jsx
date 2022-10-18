@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 
+// export default class ProductItemEXC extends Component {
+import React, { Component } from "react";
 export default class ProductItemEXC extends Component {
   render() {
     let { SanPhamChiTiet } = this.props;
