@@ -45,7 +45,7 @@ export default class extends Component {
     return this.mangDienThoai.map((item, index) => {
       return (
         <div className="col-4" key={index}>
-          <ProductItemRedux product={item} />
+          <ProductItemRedux product={item} cuabu="hloo" />
         </div>
       );
     });

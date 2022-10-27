@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../slice/counterSlice";
-const ProductItemRedux = (props) => {
-  let { product } = props;
-
-  const quantity = useSelector((state) => state.counterSlice.quantity);
+import { useDispatch, useSelector } from "react-redux";
+import { increment, addProduct } from "../slice/counterSlice";
+const ProductItemRedux = ({ product }) => {
+  // console.log(propsx);
+  // let { product } = propsx;
+  const addedList = useSelector((state) => state.counterSlice.ListAddedPhone);
+  console.log("added list", addedList);
   const dispatch = useDispatch();
-  console.log("quantiy as blala", quantity);
+  // console.log("quantiy as blala", quantity);
 
   return (
     <div>
@@ -25,6 +26,7 @@ const ProductItemRedux = (props) => {
             className="btn btn-primary"
             onClick={() => {
               dispatch(increment());
+              dispatch(addProduct(product));
             }}
           >
             Thêm vào giỏ
@@ -35,4 +37,5 @@ const ProductItemRedux = (props) => {
   );
 };
 
+// export default ProductItemRedux;
 export default ProductItemRedux;

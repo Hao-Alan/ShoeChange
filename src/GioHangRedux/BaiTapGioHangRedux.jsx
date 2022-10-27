@@ -14,7 +14,7 @@ const BaiTapGioHangRedux = () => {
           onClick={() => {}}
           style={{ cursor: "pointer" }}
           data-bs-toggle="modal"
-          data-bs-target="#exampleModalxxx"
+          data-bs-target="#exampleModal"
         >
           <i class="fa fa-shopping-cart"></i> ({quantity}) shopping Cart
         </span>

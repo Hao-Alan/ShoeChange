@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { act } from 'react-dom/test-utils'
 
 const initialState = {
     quantity: 0,
+    ListAddedPhone: [
+
+    ],
+    flag: false,
+
 }
 
 export const counterSlice = createSlice({
@@ -19,10 +25,25 @@ export const counterSlice = createSlice({
             state.quantity -= 1
         },
 
+        addProduct: (state, actions) => {
+            const currentList = state.ListAddedPhone
+            const index = currentList.findIndex(item => item.maSP === actions.payload.maSP)
+            if (index !== -1) {
+                currentList[index].quantityx += 1
+
+            }
+            else {
+                const addedItem = {
+                    ...actions.payload, quantityx: 1
+                }
+                state.ListAddedPhone = [...state.ListAddedPhone, addedItem]
+            }
+        }
+
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement } = counterSlice.actions
+export const { increment, decrement, addProduct } = counterSlice.actions
 
 export default counterSlice.reducer
