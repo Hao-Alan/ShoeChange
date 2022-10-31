@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import GioHangRedux from "./GioHangRedux";
 import ProductListRedux from "./ProductListRedux";
 import { useSelector, useDispatch } from "react-redux";
+import { tongSoLuong } from "../slice/counterSlice";
 
 const BaiTapGioHangRedux = () => {
-  const quantity = useSelector((state) => state.counterSlice.quantity);
+  const ListPhone = useSelector((state) => state.counterSlicex.ListAddedPhone);
+  const tinhTong = () =>
+    ListPhone.reduce((tong, item, index) => {
+      return (tong += item.quantityx);
+    }, 0);
+
   const dispatch = useDispatch();
   return (
     <div className="container">
@@ -16,7 +22,7 @@ const BaiTapGioHangRedux = () => {
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
-          <i class="fa fa-shopping-cart"></i> ({quantity}) shopping Cart
+          <i class="fa fa-shopping-cart"></i> ({tinhTong()}) shopping Cart
         </span>
       </div>
       <ProductListRedux />

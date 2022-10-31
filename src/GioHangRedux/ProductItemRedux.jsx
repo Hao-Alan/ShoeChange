@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, addProduct } from "../slice/counterSlice";
-const ProductItemRedux = ({ product }) => {
+import { increment, addProduct, tongSoLuong } from "../slice/counterSlice";
+
+// gdfgfdg :{
+//   product:item,
+//   cuabu:cuabu
+// }
+const ProductItemRedux = ({ product, cuabu }) => {
+  // const ProductItemRedux = (props) => {
+  //   let { product, cuabu } = props;
+  // console.log("cuabu", cuabu);
   // console.log(propsx);
   // let { product } = propsx;
-  const addedList = useSelector((state) => state.counterSlice.ListAddedPhone);
-  console.log("added list", addedList);
+  // const addedList = useSelector((state) => state.counterSlicex.ListAddedPhone);
+  // console.log("added list", addedList);
   const dispatch = useDispatch();
   // console.log("quantiy as blala", quantity);
 
@@ -25,7 +33,7 @@ const ProductItemRedux = ({ product }) => {
             href="#"
             className="btn btn-primary"
             onClick={() => {
-              dispatch(increment());
+              // dispatch(increment());
               dispatch(addProduct(product));
             }}
           >

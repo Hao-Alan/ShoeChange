@@ -7,6 +7,7 @@ const initialState = {
 
     ],
     flag: false,
+    tong: 0
 
 }
 
@@ -24,6 +25,12 @@ export const counterSlice = createSlice({
         decrement: (state) => {
             state.quantity -= 1
         },
+        // tongSoLuong: (state) => {
+        //     const tongtinh = state.ListAddedPhone.reduce((tongxx, item, index) => {
+        //         return tongxx += item.quantityx
+        //     }, 0)
+        //     state.tong = tongtinh
+        // },
 
         addProduct: (state, actions) => {
             const currentList = state.ListAddedPhone
@@ -38,12 +45,25 @@ export const counterSlice = createSlice({
                 }
                 state.ListAddedPhone = [...state.ListAddedPhone, addedItem]
             }
+        },
+
+        xoaGioHang: (state, action) => {
+            const listCapNhat = state.ListAddedPhone
+            const index = listCapNhat.findIndex(item => item.maSP === action.payload.maSP)
+            if (index !== -1) {
+                if (listCapNhat[index].quantityx < 1) {
+                    return alert("so luong khong duoc nho hon 1")
+                }
+                state.ListAddedPhone.splice(index, 1)
+            }
+
         }
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, addProduct } = counterSlice.actions
+export const { increment, decrement, addProduct, xoaGioHang, tongSoLuong } = counterSlice.actions
 
 export default counterSlice.reducer
+// export default counterSlice.name

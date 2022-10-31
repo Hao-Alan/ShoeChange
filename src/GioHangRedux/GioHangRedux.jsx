@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
+import { xoaGioHang } from "../slice/counterSlice";
 
 // export default class GioHangRedux extends Component {
 const GioHangRedux = () => {
-  const quantity = useSelector((state) => state.counterSlice.quantity);
+  // const quantity = useSelector((state) => state.counterSlicex.quantity);
 
-  const addedList = useSelector((state) => state.counterSlice.ListAddedPhone);
+  const addedList = useSelector((state) => state.counterSlicex.ListAddedPhone);
 
   console.log("added list", addedList);
   const dispatch = useDispatch();
@@ -22,8 +23,11 @@ const GioHangRedux = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
-          <div className="modal-content" style={{ width: "700px" }}>
+        <div className="modal-dialog w-auto">
+          <div
+            className="modal-content "
+            style={{ maxWidth: "700px", minWidth: "700px" }}
+          >
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
                 Giỏ Hàng Của Bạn
@@ -41,27 +45,37 @@ const GioHangRedux = () => {
                   <tr></tr>
                 </thead>
                 <tbody>
-                  {addedList.map((product) => {
+                  {addedList.map((productxx) => {
                     return (
-                      <tr key={product.maSP}>
-                        <td>{product.maSP}</td>
-                        <td>{product.tenSP}</td>
+                      <tr key={productxx.maSP}>
+                        <td>{productxx.maSP}</td>
+                        <td>{productxx.tenSP}</td>
                         <td>
                           <button className="btn btn-success">+</button>
                           <img
-                            src={product.hinhAnh}
-                            alt={product.hinhAnh}
-                            style={{ width: "70px", height: "70px" }}
+                            src={productxx.hinhAnh}
+                            alt={productxx.hinhAnh}
+                            style={{ width: "50px", height: "50px" }}
                           />
                           <button className="btn btn-danger">-</button>
                         </td>
-                        <td>{product.giaBan.toLocaleString()}</td>
-                        {/* <td>{product.rom}</td> */}
-                        <td>{product.quantityx}</td>
+                        <td>{productxx.giaBan.toLocaleString()}</td>
+                        {/* <td>{productxx.rom}</td> */}
+                        <td>{productxx.quantityx}</td>
                         <td>
                           {(
-                            product.quantityx * product.giaBan
+                            productxx.quantityx * productxx.giaBan
                           ).toLocaleString()}
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              dispatch(xoaGioHang(productxx));
+                            }}
+                          >
+                            Xoa
+                          </button>
                         </td>
                       </tr>
                     );
