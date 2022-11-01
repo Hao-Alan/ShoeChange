@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { xoaGioHang } from "../slice/counterSlice";
+import { GiamSoLuong, TangSoLuong, xoaGioHang } from "../slice/counterSlice";
 
 // export default class GioHangRedux extends Component {
 const GioHangRedux = () => {
@@ -13,7 +13,13 @@ const GioHangRedux = () => {
   const dispatch = useDispatch();
 
   //   console.log({ co unt });
-
+  const tinhTongTien = () => {
+    return addedList
+      .reduce((tong, item, index) => {
+        return (tong += item.giaBan * item.quantityx);
+      }, 0)
+      .toLocaleString();
+  };
   return (
     <div className="container ">
       <div
@@ -51,13 +57,27 @@ const GioHangRedux = () => {
                         <td>{productxx.maSP}</td>
                         <td>{productxx.tenSP}</td>
                         <td>
-                          <button className="btn btn-success">+</button>
+                          <button
+                            className="btn btn-success"
+                            onClick={() => {
+                              dispatch(TangSoLuong(productxx));
+                            }}
+                          >
+                            +
+                          </button>
                           <img
                             src={productxx.hinhAnh}
                             alt={productxx.hinhAnh}
                             style={{ width: "50px", height: "50px" }}
                           />
-                          <button className="btn btn-danger">-</button>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              dispatch(GiamSoLuong(productxx));
+                            }}
+                          >
+                            -
+                          </button>
                         </td>
                         <td>{productxx.giaBan.toLocaleString()}</td>
                         {/* <td>{productxx.rom}</td> */}
@@ -81,7 +101,11 @@ const GioHangRedux = () => {
                     );
                   })}
                 </tbody>
-                <tfoot></tfoot>
+                <tfoot>
+                  <th colSpan={5}></th>
+                  <th>Tổng tiền</th>
+                  <th>{tinhTongTien()}</th>
+                </tfoot>
               </table>
             </div>
             <div className="modal-footer">

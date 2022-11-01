@@ -7,6 +7,7 @@ import ExerciseCarStore from './props/ExerciseCarStore/ExerciseCarStore'
 import ExerciseCart from './props/ExceriseCart/ExerciseCart'
 import Test from './props/ExceriseCart/test'
 import BaiTapGioHangRedux from './GioHangRedux/BaiTapGioHangRedux'
+import BaiTapLamLai from './BaiTapLamLai/BaiTapLamLai'
 // import  Test from './props/ExceriseCart/test'
 
 export default class App extends Component {
@@ -16,7 +17,7 @@ export default class App extends Component {
       // <DanhSachSanPham />
       // <ExerciseCart />
       // <Test />
-      <BaiTapGioHangRedux />
+      <BaiTapLamLai />
     )
   }
 }
