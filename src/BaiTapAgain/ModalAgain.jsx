@@ -1,15 +1,23 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { xoaSanPham, tangSoLuong, giamSoLuong } from "../slice/counterSliceNew";
-const ModalBaiTapLamLai = () => {
-  const newGioHang = useSelector((state) => state.counterSliceNew.gioHang);
+import {
+  decrement,
+  increment,
+  themVaoGio,
+  xoaGioHang,
+  tangSoLuong,
+  giamSoLuong,
+} from "../slice/ counterSliceNew1";
+
+const ModalAgain = () => {
+  const updatedList = useSelector((state) => state.counter.gioHang);
   const dispatch = useDispatch();
-  const renderBody = () => {
-    return newGioHang.map((item, index) => {
+  const renderTableBody = () => {
+    return updatedList.map((item, index) => {
       return (
         <tr key={index}>
-          <td>{item.maSP}</td>
           <td>{item.tenSP}</td>
+          <td>{item.maSP}</td>
           <td>
             <img
               src={item.hinhAnh}
@@ -17,19 +25,18 @@ const ModalBaiTapLamLai = () => {
               style={{ width: "50px", height: "50px" }}
             />
           </td>
-          <td>{item.giaBan}</td>
           <td>
             <button
-              className="btn btn-primary me-1"
+              className="btn btn-primary me-3"
               onClick={() => {
                 dispatch(tangSoLuong(item));
               }}
             >
               +
             </button>
-            {item.quantity}
+            {item.soLuong}
             <button
-              className="btn btn-primary ms-1"
+              className="btn btn-primary ms-3"
               onClick={() => {
                 dispatch(giamSoLuong(item));
               }}
@@ -37,11 +44,12 @@ const ModalBaiTapLamLai = () => {
               -
             </button>
           </td>
+          <td>{item.giaBan.toLocaleString()}</td>
           <td>
             <button
               className="btn btn-danger"
               onClick={() => {
-                dispatch(xoaSanPham(item));
+                dispatch(xoaGioHang(item));
               }}
             >
               Xóa
@@ -51,23 +59,25 @@ const ModalBaiTapLamLai = () => {
       );
     });
   };
-
   return (
     <div>
       <div>
         {/* Modal */}
         <div
           className="modal fade "
-          id="helloe"
+          id="exampleModal3"
           tabIndex={-1}
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog">
-            <div className="modal-content" style={{ minWidth: "700px" }}>
-              <div className="modal-header">
+          <div className="modal-dialog " style={{ maxWidth: "700px" }}>
+            <div
+              className="modal-content text-center"
+              style={{ minWidth: "700px" }}
+            >
+              <div className="modal-header ">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Danh Sách Sản Phẩm
+                  Danh Sách Sản Phẩm đã chọn
                 </h5>
                 <button
                   type="button"
@@ -77,26 +87,26 @@ const ModalBaiTapLamLai = () => {
                 />
               </div>
               <div className="modal-body">
-                <table className="table">
+                <table className="table ">
                   <thead>
                     <tr>
-                      <th>Mã SP</th>
                       <th>Tên SP</th>
+                      <th>Mã SP</th>
                       <th>Hình ảnh</th>
-                      <th>Giá Bán</th>
                       <th>Số lượng</th>
+                      <th>Giá bán</th>
                       <th>Xóa</th>
                     </tr>
                   </thead>
-                  <tbody>{renderBody()}</tbody>
+                  <tbody>{renderTableBody()}</tbody>
                   <tfoot>
                     <tr>
                       <th colSpan={3}></th>
-                      <th>Tổng Tiền</th>
-                      <th colSpan={2}>
-                        {newGioHang
+                      <th colSpan={2}>Tổng Tiền </th>
+                      <th>
+                        {updatedList
                           .reduce((tong, item, index) => {
-                            return (tong += item.quantity * item.giaBan);
+                            return (tong += item.soLuong * item.giaBan);
                           }, 0)
                           .toLocaleString()}
                       </th>
@@ -121,4 +131,4 @@ const ModalBaiTapLamLai = () => {
   );
 };
 
-export default ModalBaiTapLamLai;
+export default ModalAgain;

@@ -1,8 +1,7 @@
 import React from "react";
-import BaiTapItem from "./BaiTapItem";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment, themGioHang } from "../slice/counterSliceNew";
-const BaiTapList = () => {
+import ItemAgain from "./ItemAgain";
+
+const ListAgain = () => {
   const mangDienThoai = [
     {
       maSP: 1,
@@ -45,7 +44,7 @@ const BaiTapList = () => {
     return mangDienThoai.map((item, index) => {
       return (
         <div className="col-4" key={index}>
-          <BaiTapItem sanPham={item} />
+          <ItemAgain product={item} />
         </div>
       );
     });
@@ -54,4 +53,4 @@ const BaiTapList = () => {
   return <div className="row">{renderTable()}</div>;
 };
 
-export default BaiTapList;
+export default ListAgain;
