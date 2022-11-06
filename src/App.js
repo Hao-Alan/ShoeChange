@@ -9,6 +9,7 @@ import Test from './props/ExceriseCart/test'
 import BaiTapGioHangRedux from './GioHangRedux/BaiTapGioHangRedux'
 import BaiTapLamLai from './BaiTapLamLai/BaiTapLamLai'
 import TotalAgain from './BaiTapAgain/TotalAgain'
+import BaiTapGameXucXac from './BaiTapGameXucXac/BaiTapGameXucXac'
 // import  Test from './props/ExceriseCart/test'
 
 export default class App extends Component {
@@ -19,7 +20,8 @@ export default class App extends Component {
       // <ExerciseCart />
       // <Test />
       // <BaiTapLamLai />
-      <TotalAgain />
+      // <TotalAgain />
+      <BaiTapGameXucXac />
     )
   }
 }

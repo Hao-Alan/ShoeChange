@@ -1,0 +1,35 @@
+@font-face {
+    font-family: helloGame;
+    src: url(./fonts/Pony.ttf);
+}
+.gameDoXucXac {
+    background-image: url('./assets/bgGame.png');
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    font-family:helloGame ;
+    /* top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; */
+}
+.nutNhanTaiXiu{
+    background-color: rgba(127, 24, 86, 0.414);
+    border: solid 5px ;
+
+    border-radius: 15px;
+    /* box-shadow: 0 1px 8px 0; */
+
+}
+.nutNhanTaiXiu:hover{
+    
+    /* box-shadow: 0 1px 8px 0; */
+    box-shadow: 0 1px 8px 0;
+
+}
+.nutNhanTaiXiu:focus{
+    border: solid 5px yellowgreen;
+    box-shadow: 0 1px 8px 0;
+}
+
+
