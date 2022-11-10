@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterSliceXucXac from './slice/counterSliceXucXac'
+import counterSliceTuXi from './slice/counterSliceTuXi'
 // import {increment} from './slice/counterSlice'
 export const store = configureStore({
-    reducer: { counter: counterSliceXucXac },
+    reducer: { counter: counterSliceTuXi },
 
 })

@@ -31,5 +31,8 @@
     border: solid 5px yellowgreen;
     box-shadow: 0 1px 8px 0;
 }
-
+.helllllo:hover, .helllllo:focus{
+    border: 3px solid red;
+    
+}
 
