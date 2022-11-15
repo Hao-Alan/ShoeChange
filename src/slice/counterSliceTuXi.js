@@ -48,36 +48,36 @@ export const counterSliceTuXi = createSlice({
         },
         thayContent: (state) => {
 
-            const player = state.mangPlayer
-            const computer = state.mangComputer
+            const player = state.mangPlayer.tenAction
+            const computer = state.mangComputer.tenAction
             //Case keo
-            if ((player.tenAction === "keo") && (computer.tenAction === "keo")) {
+            if ((player === "keo") && (computer === "keo")) {
                 state.content = "bạn hòa rồi!!!!"
-            } else if ((player.tenAction === "keo") && (computer.tenAction === "bua")) {
+            } else if ((player === "keo") && (computer === "bua")) {
                 state.content = "bạn thua sml!!"
-            } else if ((player.tenAction === "keo") && (computer.tenAction === "bao")) {
+            } else if ((player === "keo") && (computer === "bao")) {
                 state.soBanThang += 1
                 state.content = "bạn thắng đậm !!"
             }
 
             //Case bua
-            else if ((player.tenAction === "bua") && (computer.tenAction === "keo")) {
+            else if ((player === "bua") && (computer === "keo")) {
                 state.soBanThang += 1
                 state.content = "bạn thắng đậm !!"
-            } else if ((player.tenAction === "bua") && (computer.tenAction === "bua")) {
+            } else if ((player === "bua") && (computer === "bua")) {
                 state.content = "bạn hòa rồi!!!!"
 
-            } else if ((player.tenAction === "bua") && (computer.tenAction === "bao")) {
+            } else if ((player === "bua") && (computer === "bao")) {
                 state.content = "bạn thua sml!!"
             }
             //Case bao
-            else if ((player.tenAction === "bao") && (computer.tenAction === "keo")) {
+            else if ((player === "bao") && (computer === "keo")) {
                 state.content = "bạn thua sml!!"
-            } else if ((player.tenAction === "bao") && (computer.tenAction === "bua")) {
+            } else if ((player === "bao") && (computer === "bua")) {
                 state.soBanThang += 1
                 state.content = "bạn thắng đậm !!"
 
-            } else if ((player.tenAction === "bao") && (computer.tenAction === "bao")) {
+            } else if ((player === "bao") && (computer === "bao")) {
                 state.content = "bạn hòa rồi!!!!"
             }
             state.tongSoBan += 1

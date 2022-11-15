@@ -12,6 +12,7 @@ import TotalAgain from './BaiTapAgain/TotalAgain'
 import BaiTapGameXucXac from './BaiTapGameXucXac/BaiTapGameXucXac'
 import BaiTapXuXi from './BaiTapTuXi/BaiTapTuXi'
 import BaiTapTuXi from './BaiTapTuXi/BaiTapTuXi'
+import BaiTapDatVeXemPhim from './BaiTapDatVeXemPhim/BaiTapDatVeXemPhim'
 // import  Test from './props/ExceriseCart/test'
 
 export default class App extends Component {
@@ -24,7 +25,8 @@ export default class App extends Component {
       // <BaiTapLamLai />
       // <TotalAgain />
       // <BaiTapGameXucXac />
-      <BaiTapTuXi />
+      // <BaiTapTuXi />
+      <BaiTapDatVeXemPhim />
     )
   }
 }
