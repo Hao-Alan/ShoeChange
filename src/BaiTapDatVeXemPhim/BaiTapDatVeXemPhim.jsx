@@ -3,39 +3,19 @@ import "./BaiTapDatVeXemPhim.css";
 // import GheNgoi from "./GheNgoi";
 import GiaTienSoGhe from "./GiaTienSoGhe";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../slice/counterSliceVeXemPhim.js";
+import {
+  decrement,
+  increment,
+  themGheDangDat,
+} from "../slice/counterSliceVeXemPhim.js";
 import danhSachList from "../data/danhSachGhe.json";
-import GheNgoi from "./GheNgoi";
 const BaiTapDatVeXemPhim = () => {
-  //   const duLieu = useSelector((state) => state.counter.mangDuLieu);
+  const gheDangDat = useSelector((state) => state.counter.gheDangDat);
+
   const dispatch = useDispatch();
 
   const gheNgoiLayout = () => {
     return danhSachList.map((ghe, index) => {
-      const renderGhe = () => {
-        return ghe.danhSachGhe.map((gheNgoi, index) => {
-          let cssGheDaDat = "";
-          let disable = false;
-          if (gheNgoi.daDat) {
-            cssGheDaDat = "gheDaDat";
-            disable = true;
-          }
-          return (
-            <button
-              disabled={disable}
-              key={index}
-              className={`gheChuaDat ${cssGheDaDat}`}
-              onClick={() => {
-                alert("hello all");
-              }}
-            >
-              {gheNgoi.soGhe}
-              {/* <GheNgoi gheNgoi={gheNgoi} /> */}
-            </button>
-          );
-        });
-      };
-
       const renderTong = () => {
         if (index === 0) {
           return ghe.danhSachGhe.map((gheNgoi, index) => {
@@ -48,6 +28,38 @@ const BaiTapDatVeXemPhim = () => {
         } else {
           return <div>{renderGhe()}</div>;
         }
+      };
+
+      const renderGhe = () => {
+        return ghe.danhSachGhe.map((gheNgoi, index) => {
+          let disablis = false;
+
+          let indexx = gheDangDat.findIndex(
+            (item) => item.soGhe === gheNgoi.soGhe
+          );
+          let cssGheDaDat = "";
+          let cssGheDangDat = "";
+          if (gheNgoi.daDat) {
+            cssGheDaDat = "gheDaDat";
+            disablis = true;
+          }
+          if (indexx !== -1) {
+            cssGheDangDat = "cssGheDangDatMau";
+          }
+          return (
+            <button
+              disabled={disablis}
+              key={index}
+              className={`gheChuaDat ${cssGheDaDat} ${cssGheDangDat}`}
+              onClick={() => {
+                dispatch(themGheDangDat(gheNgoi));
+              }}
+            >
+              {gheNgoi.soGhe}
+              {/* <GheNgoi gheNgoi={gheNgoi} /> */}
+            </button>
+          );
+        });
       };
 
       return (
@@ -90,19 +102,19 @@ const BaiTapDatVeXemPhim = () => {
                 <button className="btn btn-light border-warning  p-3 me-2"></button>
                 ghế chưa đặt
               </div>
-              <div className="table">
+              <table className="table table-bordered mt-3 text-center">
                 <thead>
                   <tr>
                     <th>Số ghế</th>
                     <th>Giá</th>
-                    <th></th>
+                    <th>Xóa</th>
                   </tr>
                 </thead>
                 <tbody>
                   <GiaTienSoGhe />
                 </tbody>
                 <tfoot></tfoot>
-              </div>
+              </table>
             </div>
           </div>
         </div>
